@@ -3,21 +3,25 @@ import { useEffect, useRef } from "react";
 import { DPR } from "../coord/DPR";
 import { Size } from "../coord/Size";
 
-const setCanavasSize = (canvas: HTMLCanvasElement, size: Size) => {
+const setCanvasSize = (canvas: HTMLCanvasElement, size: Size) => {
   canvas.width = size.width * DPR;
   canvas.height = size.height * DPR;
 };
 
+/**
+ * フルスクリーンのcanvas要素を描画するためのhooks
+ */
 export const useFullCanvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const canvasSize = useElementSize(canvasRef);
 
   const canvas = canvasRef.current;
+  // canvas要素に対してgetContext("2d")を実行すると、2Dグラフィックを描画するためのメソッドやプロパティをもつオブジェクトを返す
   const ctx = canvas?.getContext("2d") ?? undefined;
 
   useEffect(() => {
     if (!canvas) return;
-    setCanavasSize(canvas, canvasSize);
+    setCanvasSize(canvas, canvasSize);
   }, [canvas, canvasSize]);
 
   const element = (
