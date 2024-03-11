@@ -1,9 +1,13 @@
 import { MainStage } from "./components/MainStage";
+import { ControlBar } from "./components/ControlBar";
 
 function App() {
   return (
     <>
-      <MainStage />
+      <ControlBar />
+      <div className="relative">
+        <MainStage />
+      </div>
     </>
   );
 }
